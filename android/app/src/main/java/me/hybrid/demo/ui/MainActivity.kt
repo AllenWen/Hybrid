@@ -20,7 +20,7 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
         open.setOnClickListener {
             val intent = Intent(this, WebViewActivity::class.java)
-            intent.putExtra("url", "https://allenwen.github.io/Hybrid/webapp/index.html")
+            intent.putExtra("url", "http://192.168.3.186:3000/")
             startActivity(intent)
         }
     }
