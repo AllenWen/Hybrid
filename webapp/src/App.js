@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       <text>这是react渲染的网页<br/>请点击按钮</text>
-      <button onClick={() => Hybrid.openapp("wen","s")}>
+      <button onClick={() => Hybrid.open('wen','s')}>
         Test
       </button>
       </header>
