@@ -9,13 +9,6 @@ import android.app.Application
  * @changeNote
  * @date 2020-01-06
  */
-class MyApplication : Application() {
+class HybridApplication : Application() {
 
-    companion object {
-        fun getApp() = this
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-    }
 }
