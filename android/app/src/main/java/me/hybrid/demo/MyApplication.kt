@@ -11,6 +11,10 @@ import android.app.Application
  */
 class MyApplication : Application() {
 
+    companion object {
+        fun getApp() = this
+    }
+
     override fun onCreate() {
         super.onCreate()
     }
