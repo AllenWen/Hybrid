@@ -18,7 +18,8 @@ import org.json.JSONObject
  * @changeNote
  * @date 2020-01-14
  */
-class HybridWebChrome(private val context: Context) : WebChromeClient() {
+class HybridWebChrome(private val webview: WebView, private val context: Context) :
+    WebChromeClient() {
 
     override fun onJsPrompt(
         view: WebView?,
@@ -42,25 +43,39 @@ class HybridWebChrome(private val context: Context) : WebChromeClient() {
         request: JSONObject,
         result: JsPromptResult?
     ) {
-        val category = request["category"] as String?
-        val param = request["param"] as JSONObject?
-        if (category.isNullOrEmpty() || param == null) {
-            result?.confirm()
-            return
+        try {
+            val category = request["category"] as String?
+            val param = request["params"] as JSONObject?
+            if (category.isNullOrEmpty() || param == null) {
+                result?.confirm()
+                return
+            }
+            when (category) {
+                HybridConfig.JUMP -> {
+                    val name = param["name"]
+                    context.startActivity(Intent(context, JumpActivity::class.java))
+                    val callback = request["callback"] as String?
+                    val callbackId = request["callbackId"] as String?
+                    if (!callback.isNullOrEmpty() && !callbackId.isNullOrEmpty()) {
+                        val resultJson = JSONObject()
+                        resultJson.put("data", "好")
+                        resultJson.put("code", 0)
+                        resultJson.put("msg", "success")
+                        webview.evaluateJavascript("$callback('$resultJson')", null)
+                    }
+                    result?.confirm()
+                }
+                HybridConfig.FUNC -> {
+                    result?.confirm("func")
+                }
+                HybridConfig.EVENT -> {
+                    result?.confirm("event")
+                }
+                else -> result?.confirm()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        when (category) {
-            HybridConfig.JUMP -> {
-                val name = param["name"]
-                context.startActivity(Intent(context, JumpActivity::class.java))
-                result?.confirm("jump")
-            }
-            HybridConfig.FUNC -> {
-                result?.confirm("func")
-            }
-            HybridConfig.EVENT -> {
-                result?.confirm("event")
-            }
-            else -> result?.confirm()
-        }
+
     }
 }

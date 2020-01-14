@@ -1,18 +1,38 @@
 import React from 'react';
 import './App.css';
-import Hybrid from './hybrid/core.js';
+import Bridge from './bridge/core.js.js';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-      <text>这是react渲染的网页<br/>请点击按钮</text>
-      <button onClick={() => Hybrid.open('wen','s')}>
-        Test
+type Props = {
+  user: String,
+};
+
+class App extends React.PureComponent<Props, *> {
+
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <text>这是react渲染的网页<br />{this.props.user}</text>
+          <button onClick={() => test()}>
+            Test
       </button>
-      </header>
-    </div>
-  );
+        </header>
+      </div>
+    )
+  }
+}
+
+function test() {
+  var params = {}
+  params.name = '某页面'
+  var msg = {}
+  msg.category = 'jump'
+  msg.params = params
+  Bridge.open(msg, callback)
+}
+
+function callback(result) {
+
 }
 
 export default App;

@@ -34,7 +34,7 @@ class WebViewActivity : Activity() {
     private fun initView() {
         WebView.setWebContentsDebuggingEnabled(BuildConfig.DEBUG)
         webview.webViewClient = HybridWebClient()
-        webview.webChromeClient = HybridWebChrome(this)
+        webview.webChromeClient = HybridWebChrome(webview, this)
 
         val settings = webview.settings
         settings.javaScriptEnabled = true
