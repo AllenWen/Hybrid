@@ -53,15 +53,15 @@ class HybridWebChrome(private val webview: WebView, private val context: Context
             when (category) {
                 HybridConfig.JUMP -> {
                     val name = param["name"]
-                    context.startActivity(Intent(context, JumpActivity::class.java))
-                    val callback = request["callback"] as String?
-                    val callbackId = request["callbackId"] as String?
+//                    context.startActivity(Intent(context, JumpActivity::class.java))
+                    val callback = param["callback"] as String?
+                    val callbackId = param["callbackId"] as String?
                     if (!callback.isNullOrEmpty() && !callbackId.isNullOrEmpty()) {
                         val resultJson = JSONObject()
-                        resultJson.put("data", "好")
+                        resultJson.put("data", "点了")
                         resultJson.put("code", 0)
                         resultJson.put("msg", "success")
-                        webview.evaluateJavascript("$callback('$resultJson')", null)
+                        webview.evaluateJavascript("$callback('$callbackId','$resultJson')", null)
                     }
                     result?.confirm()
                 }

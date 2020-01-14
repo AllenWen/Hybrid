@@ -5,12 +5,9 @@ var Bridge = {
     open: function (msg, callback) {
         if (callback && typeof (callback) === 'function') {
             var callbackid = this.getNextCallbackID();
-            callbackMap[callbackid] = callback;
-            msg.params = {
-                params,
-                callbackId: callbackid,
-                callback: 'window.callbackDispatcher'
-            }
+            callbackMap[callbackid] = callback
+            msg.params.callbackId = callbackid
+            msg.params.callback = 'window.callbackDispatcher'
         }
         if (this.isIOS()) {
             try {
@@ -54,6 +51,7 @@ var Bridge = {
 
 };
 
+//回调处理器
 window.callbackDispatcher = function (callbackId, resultjson) {
     var callback = callbackMap[callbackId];
     if (callback && typeof (callback) === 'function') {
