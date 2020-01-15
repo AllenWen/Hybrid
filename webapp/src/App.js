@@ -6,25 +6,25 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { vb: '点击按钮' };
+    this.state = { btnText: '点击按钮' };
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <text>这是react渲染的网页<br />{this.state.vb}</text>
+          <text>这是react渲染的网页<br />{this.state.btnText}</text>
           <button onClick={() => this.test()}>
             Test
-      </button>
+          </button>
         </header>
       </div>
     )
   }
 
-  callback(result) {
+  showCount = (result) => {
     this.setState({
-      vb: result.data
+      btnText: result.data
     })
   }
 
@@ -34,7 +34,7 @@ class App extends React.Component {
     var msg = {}
     msg.category = 'jump'
     msg.params = params
-    Bridge.open(msg, callback)
+    Bridge.open(msg, this.showCount)
   }
 
 }

@@ -1,14 +1,12 @@
 package me.hybrid.demo.core
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
 import android.webkit.JsPromptResult
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.widget.Toast
 import me.hybrid.demo.config.HybridConfig
-import me.hybrid.demo.ui.JumpActivity
 import org.json.JSONObject
 
 /**
@@ -21,6 +19,8 @@ import org.json.JSONObject
 class HybridWebChrome(private val webview: WebView, private val context: Context) :
     WebChromeClient() {
 
+    var count = 1
+
     override fun onJsPrompt(
         view: WebView?,
         url: String?,
@@ -29,7 +29,7 @@ class HybridWebChrome(private val webview: WebView, private val context: Context
         result: JsPromptResult?
     ): Boolean {
         Log.d("wxg", "url:$url\nmessage:$message")
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
         if (message.isNullOrEmpty()) {
             result?.confirm()
         } else {
@@ -58,7 +58,7 @@ class HybridWebChrome(private val webview: WebView, private val context: Context
                     val callbackId = param["callbackId"] as String?
                     if (!callback.isNullOrEmpty() && !callbackId.isNullOrEmpty()) {
                         val resultJson = JSONObject()
-                        resultJson.put("data", "点了")
+                        resultJson.put("data", "回调处理:${count++}")
                         resultJson.put("code", 0)
                         resultJson.put("msg", "success")
                         webview.evaluateJavascript("$callback('$callbackId','$resultJson')", null)
