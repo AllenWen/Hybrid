@@ -11,14 +11,15 @@ var Bridge = {
         }
         if (this.isIOS()) {
             try {
-                window.webkit.messageHandlers.WKJSBridge.postMessage(msg)
+                //注：不支持同步返回，可能考虑iOS也使用弹窗拦截方式
+                window.webkit.messageHandlers.xxx.postMessage(msg)
             } catch (error) {
                 console.log('error native message')
             }
         } else if (this.isAndroid()) {
             try {
                 var result = prompt(JSON.stringify(msg))
-                console.log(result)
+                return result
             } catch (error) {
                 console.log('error native message')
             }

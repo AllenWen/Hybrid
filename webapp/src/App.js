@@ -28,13 +28,14 @@ class App extends React.Component {
     })
   }
 
-  test() {
-    var params = {}
-    params.url = 'notice/device'
+  test = ()=> {
     var msg = {}
     msg.name = 'jump'
-    msg.params = params
-    Bridge.open(msg, this.showCount)
+    msg.params = { url: 'notice/device' }
+    var result = Bridge.open(msg, '')
+    this.setState({
+      btnText: JSON.parse(result).data
+    })
   }
 
 }
