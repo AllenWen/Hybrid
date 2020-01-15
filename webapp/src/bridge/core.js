@@ -6,8 +6,8 @@ var Bridge = {
         if (callback && typeof (callback) === 'function') {
             var callbackid = this.getNextCallbackID();
             callbackMap[callbackid] = callback
-            msg.params.callbackId = callbackid
-            msg.params.callback = 'window.callbackDispatcher'
+            msg.callback = 'window.callbackDispatcher'
+            msg.callbackId = callbackid
         }
         if (this.isIOS()) {
             try {

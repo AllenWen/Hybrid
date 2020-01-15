@@ -16,7 +16,7 @@ import org.json.JSONObject
  * @changeNote
  * @date 2020-01-14
  */
-class HybridWebChrome(private val webview: WebView, private val context: Context) :
+class HybridWebChrome(private val webView: WebView, private val context: Context) :
     WebChromeClient() {
 
     var count = 1
@@ -44,31 +44,32 @@ class HybridWebChrome(private val webview: WebView, private val context: Context
         result: JsPromptResult?
     ) {
         try {
-            val category = request["category"] as String?
-            val param = request["params"] as JSONObject?
-            if (category.isNullOrEmpty() || param == null) {
+            val name = request["name"] as String?
+            if (name.isNullOrEmpty()) {
                 result?.confirm()
                 return
             }
-            when (category) {
-                HybridConfig.JUMP -> {
-                    val name = param["name"]
+            when (name) {
+                HybridConfig.NAME_JUMP -> {
+                    val params = request["params"] as JSONObject?
+                    val url = params?.getString("url")
+                    Log.d("wxg", "jump_url:$url")
 //                    context.startActivity(Intent(context, JumpActivity::class.java))
-                    val callback = param["callback"] as String?
-                    val callbackId = param["callbackId"] as String?
-                    if (!callback.isNullOrEmpty() && !callbackId.isNullOrEmpty()) {
+                    val cb = request.getString("callback")
+                    val cbId = request.getString("callbackId")
+                    if (!cb.isNullOrEmpty() && !cbId.isNullOrEmpty()) {
                         val resultJson = JSONObject()
                         resultJson.put("data", "回调处理:${count++}")
                         resultJson.put("code", 0)
                         resultJson.put("msg", "success")
-                        webview.evaluateJavascript("$callback('$callbackId','$resultJson')", null)
+                        webView.evaluateJavascript("$cb('$cbId','$resultJson')", null)
                     }
                     result?.confirm()
                 }
-                HybridConfig.FUNC -> {
+                HybridConfig.NAME_FUNC -> {
                     result?.confirm("func")
                 }
-                HybridConfig.EVENT -> {
+                HybridConfig.NAME_EVENT -> {
                     result?.confirm("event")
                 }
                 else -> result?.confirm()

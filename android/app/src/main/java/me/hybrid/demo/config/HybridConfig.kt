@@ -8,7 +8,7 @@ package me.hybrid.demo.config
  * @date 2020-01-14
  */
 object HybridConfig {
-    const val JUMP = "jump"
-    const val FUNC = "func"
-    const val EVENT = "event"
+    const val NAME_JUMP = "jump"
+    const val NAME_FUNC = "func"
+    const val NAME_EVENT = "event"
 }

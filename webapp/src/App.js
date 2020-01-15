@@ -30,9 +30,9 @@ class App extends React.Component {
 
   test() {
     var params = {}
-    params.name = '某页面'
+    params.url = 'notice/device'
     var msg = {}
-    msg.category = 'jump'
+    msg.name = 'jump'
     msg.params = params
     Bridge.open(msg, this.showCount)
   }

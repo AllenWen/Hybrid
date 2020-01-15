@@ -52,4 +52,9 @@ class WebViewActivity : Activity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+    }
+
 }
