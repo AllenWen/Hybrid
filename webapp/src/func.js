@@ -10,9 +10,9 @@ class Func extends React.Component {
     }
 
     componentDidMount() {
-        window.onListenEvent('back', (data) => {
+        window.onListenEvent('pause', (data) => {
             console.log(data)
-            console.log('点击了返回键')
+            console.log('页面暂停')
             return 'H5接受到了主动调用'
         })
     }

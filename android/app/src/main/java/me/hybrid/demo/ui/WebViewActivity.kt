@@ -60,7 +60,7 @@ class WebViewActivity : Activity() {
         resultJson.put("data", "回调处理")
         resultJson.put("code", 0)
         resultJson.put("msg", "success")
-        webview.evaluateJavascript("eventDispatcher('back','$resultJson')") {
+        webview.evaluateJavascript("eventDispatcher('pause','$resultJson')") {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
         super.onPause()
