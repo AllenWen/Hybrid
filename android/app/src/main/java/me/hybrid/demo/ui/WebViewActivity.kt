@@ -54,7 +54,11 @@ class WebViewActivity : Activity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+    }
 
+    fun updateTitle(title: String?) {
+        if (title.isNullOrEmpty()) return
+        tv_title.text = title
     }
 
 }

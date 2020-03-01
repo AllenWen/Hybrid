@@ -11,10 +11,10 @@ import me.hybrid.demo.R
  * @changeNote
  * @date 2020-01-06
  */
-class JumpActivity : Activity() {
+class ExampleActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_jump)
+        setContentView(R.layout.activity_example)
     }
 }

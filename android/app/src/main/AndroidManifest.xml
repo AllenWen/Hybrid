@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.WebViewActivity" />
-        <activity android:name=".ui.JumpActivity" />
+        <activity android:name=".ui.ExampleActivity" />
 
     </application>
 </manifest>
