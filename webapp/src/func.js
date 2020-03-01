@@ -9,6 +9,14 @@ class Func extends React.Component {
         this.state = { countText: '' };
     }
 
+    componentDidMount() {
+        window.onListenEvent('back', (data) => {
+            console.log(data)
+            console.log('点击了返回键')
+            return 'H5接受到了主动调用'
+        })
+    }
+
     render() {
         return (
             <div className="App">
@@ -34,7 +42,14 @@ class Func extends React.Component {
             name: 'func',
             params: { name: 'getCount' }
         }
+        console.log('哈哈')
         Bridge.open(msg, this.showCount)
+        // 或者 
+        // Bridge.open(msg, (result)=>{
+        //     this.setState({
+        //         countText: result.data
+        //     })
+        // })
     }
 
 }

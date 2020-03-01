@@ -4,11 +4,6 @@ import './App.css';
 
 class Jump extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { btnText: '' };
-  }
-
   render() {
     return (
       <div className="App">
@@ -26,10 +21,7 @@ class Jump extends React.Component {
       name: 'jump',
       params: { url: '/example' }
     }
-    var result = Bridge.open(msg, '')
-    this.setState({
-      btnText: JSON.parse(result).data
-    })
+    Bridge.open(msg, '')
   }
 
 }

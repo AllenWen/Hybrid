@@ -5,13 +5,16 @@ import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.webkit.CookieManager
+import android.webkit.ValueCallback
 import android.webkit.WebSettings
 import android.webkit.WebView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_web.*
 import me.hybrid.demo.BuildConfig
 import me.hybrid.demo.R
 import me.hybrid.demo.core.HybridWebChrome
 import me.hybrid.demo.core.HybridWebClient
+import org.json.JSONObject
 
 /**
  * @author <a href="allen@kucoin.com">allen</a>
@@ -50,6 +53,17 @@ class WebViewActivity : Activity() {
             //适配5.0以上不允许http和https混合使用情况
             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
+    }
+
+    override fun onPause() {
+        val resultJson = JSONObject()
+        resultJson.put("data", "回调处理")
+        resultJson.put("code", 0)
+        resultJson.put("msg", "success")
+        webview.evaluateJavascript("eventDispatcher('back','$resultJson')") {
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+        }
+        super.onPause()
     }
 
     override fun onBackPressed() {
