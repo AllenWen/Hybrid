@@ -5,6 +5,7 @@ import Jump from './jump';
 import Func from './func';
 import Event from './event';
 import Offline from './offline';
+import Request from './request';
 
 const BasicRoute = () => (
     <HashRouter>
@@ -14,6 +15,7 @@ const BasicRoute = () => (
             <Route exact path="/func" component={Func}/>
             <Route exact path="/event" component={Event}/>
             <Route exact path="/offline" component={Offline}/>
+            <Route exact path="/request" component={Request}/>
         </Switch>
     </HashRouter>
 );

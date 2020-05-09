@@ -14,6 +14,8 @@ class App extends React.Component {
           <button onClick={() => this.props.history.push('event')}>事件类（Event）</button>
           <br></br>
           <button onClick={() => this.props.history.push('offline')}>离线资源</button>
+          <br></br>
+          <button onClick={() => this.props.history.push('request')}>请求类（Get/Post）</button>
         </header>
       </div>
     )

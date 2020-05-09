@@ -1,6 +1,7 @@
 package me.hybrid.demo.core
 
 import android.net.Uri
+import android.util.Log
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -18,7 +19,7 @@ import java.io.InputStream
  * @date 2020-01-06
  */
 class HybridWebClient : WebViewClient() {
-    private val H5_HOST = "http://192.168.50.76"
+    private val H5_HOST = "http://192.168.3.186"
 
     override fun shouldInterceptRequest(view: WebView, url: String): WebResourceResponse? {
         if (url.isEmpty() || !url.contains(H5_HOST)) return super.shouldInterceptRequest(view, url)
@@ -32,6 +33,7 @@ class HybridWebClient : WebViewClient() {
                 val localCopy: InputStream = FileInputStream(file)
                 val mimeType: String = getMimeType(url)
                 response = WebResourceResponse(mimeType, "UTF-8", localCopy)
+                Log.d("wxg","local file cached. ${file.absolutePath}")
             } catch (e: IOException) {
                 e.printStackTrace()
             }

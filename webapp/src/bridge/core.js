@@ -12,15 +12,15 @@ var Bridge = {
         }
         if (this.isIOS()) {
             try {
-                //注：不支持同步返回，可能考虑iOS也使用弹窗拦截方式
-                window.webkit.messageHandlers.xxx.postMessage(msg)
+                var resultIOS = prompt(JSON.stringify(msg))
+                return resultIOS
             } catch (error) {
                 console.log('error native message')
             }
         } else if (this.isAndroid()) {
             try {
-                var result = prompt(JSON.stringify(msg))
-                return result
+                var resultAndroid = window.KuCoin.prompt(JSON.stringify(msg))
+                return resultAndroid
             } catch (error) {
                 console.log('error native message')
             }
