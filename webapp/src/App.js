@@ -3,6 +3,14 @@ import './App.css';
 
 class App extends React.Component {
 
+  componentDidMount() {
+    window.onListenEvent('onLeftClick', (data) => {
+      console.log(data)
+      console.log('app 点击返回')
+      return false
+    })
+  }
+
   render() {
     return (
       <div className="App">

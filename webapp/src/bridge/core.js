@@ -64,29 +64,19 @@ window.callbackDispatcher = function (callbackId, resultjson) {
 }
 
 //监听的API
-window.onListenEvent= function (eventId, handler) {
-    var handlerArr = eventCallMap[eventId];
-    if (handlerArr === undefined) {
-        handlerArr = [];
-        eventCallMap[eventId] = handlerArr;
-    }
-    if (handler !== undefined) {
-        handlerArr.push(handler);
+window.onListenEvent = function (eventId, handler) {
+    if (handler && typeof (handler) === 'function') {
+        eventCallMap[eventId] = handler;
     }
 }
 
 //native to js 回调处理器
-window.eventDispatcher= function (eventId, resultjson) {
-    var handlerArr = eventCallMap[eventId];
-    for (var key in handlerArr) {
-        if (handlerArr.hasOwnProperty(key)) {
-            var handler = handlerArr[key];
-            if (handler && typeof (handler) === 'function') {
-                var resultObj = resultjson ? JSON.parse(resultjson) : {};
-                var returnData = handler(resultObj);
-                return returnData; 
-            }
-        }
+window.eventDispatcher = function (eventId, resultjson) {
+    var handler = eventCallMap[eventId];
+    if (handler && typeof (handler) === 'function') {
+        var resultObj = resultjson ? JSON.parse(resultjson) : {};
+        var returnData = handler(resultObj);
+        return returnData;
     }
 }
 
