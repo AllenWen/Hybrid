@@ -25,6 +25,10 @@ class Func extends React.Component {
                     <br></br>
                     <button onClick={() => this.excute()}>获取本地计数</button>
                     <br></br>
+                    <button onClick={() => this.excutePwd()}>获取交易密码</button>
+                    <br></br>
+                    <button onClick={() => this.excuteToast()}>弹出提示</button>
+                    <br></br>
                     <button onClick={() => this.props.history.goBack()}>返回</button>
                 </header>
             </div>
@@ -50,6 +54,30 @@ class Func extends React.Component {
         //         countText: result.data
         //     })
         // })
+    }
+
+    excuteToast = (data) => {
+        var msg = {
+            type: 'func',
+            params: {
+                name: 'showToast',
+                value: data ? data : '这是提示'
+            }
+        }
+        Bridge.open(msg, '')
+    }
+
+    excutePwd = () => {
+        var msg = {
+            type: 'func',
+            params: {
+                name: 'getPwd'
+            }
+        }
+        console.log('被调用')
+        Bridge.open(msg, (result) => {
+            this.excuteToast(result.msg)
+        })
     }
 
 }
