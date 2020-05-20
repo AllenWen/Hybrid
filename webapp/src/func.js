@@ -71,7 +71,7 @@ class Func extends React.Component {
         var msg = {
             type: 'func',
             params: {
-                name: 'getPwd'
+                name: 'getTradePwd'
             }
         }
         console.log('被调用')

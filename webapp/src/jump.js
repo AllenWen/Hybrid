@@ -18,10 +18,18 @@ class Jump extends React.Component {
 
   excute = () => {
     var msg = {
-      name: 'jump',
-      params: { url: '/example' }
+      type: 'jump',
+      params: {
+        url: '/settings',
+        coin: 'KCS',
+        from: 'MAIN',
+        to: 'MARGIN'
+      }
     }
-    Bridge.open(msg, '')
+    Bridge.open(msg, (result) => {
+      console.log(result.msg)
+      console.log(result.code)
+    })
   }
 
 }

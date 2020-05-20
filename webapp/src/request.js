@@ -30,8 +30,9 @@ class Request extends React.Component {
 
     excuteGet = () => {
         var msg = {
-            type: 'get',
+            type: 'proxy',
             params: {
+                method: 'get',
                 url: 'http://appapi-v2.kucoin.net/timestamp'
             }
         }
@@ -40,8 +41,9 @@ class Request extends React.Component {
 
     excutePost = () => {
         var msg = {
-            type: 'post',
+            type: 'proxy',
             params: {
+                method: 'post',
                 url: 'http://appapi-v2.kucoin.net/app/v1/account/main-detail',
                 size: 15,
                 page: 1,
