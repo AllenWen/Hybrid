@@ -9,14 +9,6 @@ class Func extends React.Component {
         this.state = { countText: '' };
     }
 
-    componentDidMount() {
-        window.onListenEvent('pause', (data) => {
-            console.log(data)
-            console.log('页面暂停')
-            return 'H5接受到了主动调用'
-        })
-    }
-
     render() {
         return (
             <div className="App">

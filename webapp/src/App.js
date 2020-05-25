@@ -5,7 +5,6 @@ class App extends React.Component {
 
   componentDidMount() {
     window.onListenEvent('onLeftClick', (data) => {
-      console.log(data)
       console.log('app 点击返回')
       return false
     })

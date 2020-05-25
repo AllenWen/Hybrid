@@ -11,12 +11,10 @@ class Event extends React.Component {
 
     componentDidMount() {
         window.onListenEvent('onLeftClick', (data) => {
-            console.log(data)
             console.log('event 点击返回')
             return true
         })
         window.onListenEvent('onRightClick', (data) => {
-            console.log(data)
             console.log('event 点击更多')
             return false
         })
