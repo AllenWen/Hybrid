@@ -1,0 +1,22 @@
+{
+    "id":"5213bchs219321",
+    "version":"1.0.0",
+    "modules":[
+        {
+            "id":"5213bchs219321",
+            "name":"poolx",
+            "version":"0.0.1",
+            "isPatch":false,
+            "md5":"28392103821390213",
+            "url":"https://www.baidu.com"
+        },
+        {
+            "id":"5213bmksjadkksad",
+            "name":"spotlight",
+            "version":"0.0.1",
+            "isPatch":false,
+            "md5":"12938210390219302",
+            "url":"https://www.tecent.com"
+        }
+    ]
+}
