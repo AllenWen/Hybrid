@@ -1,7 +1,7 @@
 {
     "id":"5213bchs219321",
     "version":"1.0.0",
-    "modules":[
+    "packages":[
         {
             "id":"5213bchs219321",
             "name":"poolx",
