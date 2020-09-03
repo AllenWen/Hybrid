@@ -4,7 +4,7 @@
         {
             "name":"landing-web",
             "version":"1.1.23",
-            "url":"https://github.com/AllenWen/hybrid-demo/edit/master/dist.zip?raw=true"
+            "url":"https://raw.githubusercontent.com/AllenWen/hybrid-demo/master/dist.zip"
         }
     ]
 }
